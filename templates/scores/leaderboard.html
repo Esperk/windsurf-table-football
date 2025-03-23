@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <!-- Navigation Bar -->
+    <div class="nav-bar d-flex justify-content-between align-items-center px-4">
+        <div class="nav-links">
+            <a href="{% url 'leaderboard' %}" class="nav-link">Ratings</a>
+            <a href="{% url 'home' %}" class="nav-link">Games</a>
+        </div>
+        <div class="auth-links">
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile-update' %}" class="login-link">Profile</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="login-link">Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="leaderboard-container">
+        <div class="leaderboard-header d-flex justify-content-between align-items-center">
+            <div class="flex-grow-1 text-center">
+                <h1 class="leaderboard-title">Ratings</h1>
+            </div>
+            <div>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'match-create' %}" class="add-game-button">
+                        Add a game result
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row m-0">
+            <div class="col-12 p-0">
+                {% if stats %}
+                    <div class="table-responsive">
+                        <table class="table leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th>Name</th>
+                                    <th class="text-center">Streak</th>
+                                    <th class="text-center">Ranking</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for stat in stats %}
+                                    <tr>
+                                        <td class="text-center">
+                                            <span class="rank-number">{{ forloop.counter }}</span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="player-avatar me-2" data-color="{{ stat.player.profile_color }}">
+                                                    {{ stat.player.nickname|default:stat.player.user.username|slice:":1" }}
+                                                </div>
+                                                <a href="{% url 'player-detail' stat.player.pk %}" class="player-name">
+                                                    {{ stat.player.nickname|default:stat.player.user.username }}
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="streak-value">
+                                                {% if stat.matches_won > stat.matches_lost %}
+                                                    {{ stat.matches_won }}
+                                                {% elif stat.matches_won < stat.matches_lost %}
+                                                    0
+                                                {% else %}
+                                                    0
+                                                {% endif %}
+                                            </span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="ranking-value">{{ stat.win_percentage_calc|floatformat:0 }}</span>
+                                            {% if stat.matches_won > stat.matches_lost %}
+                                                <span class="ranking-change ranking-up">+{{ stat.matches_won|add:5 }}</span>
+                                            {% else %}
+                                                <span class="ranking-change ranking-down">-{{ stat.matches_lost|add:5 }}</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="text-center py-5">
+                        <i class="fas fa-trophy fa-4x mb-3 text-muted"></i>
+                        <h4>No player statistics available yet</h4>
+                        <p>Players will appear on the leaderboard once they've played matches</p>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'match-create' %}" class="btn btn-primary mt-2">
+                                Record New Match
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set player avatar colors from data attributes
+        const avatars = document.querySelectorAll('.player-avatar[data-color]');
+        avatars.forEach(avatar => {
+            avatar.style.backgroundColor = avatar.dataset.color;
+            avatar.style.color = 'white';
+        });
+    });
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+{% endblock %}

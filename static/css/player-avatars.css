@@ -1,0 +1,50 @@
+/* Player avatar styles */
+.player-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 8px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Larger avatar for player cards */
+.player-avatar-large {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+}
+
+/* Extra large avatar for profile page */
+.player-avatar-extra-large {
+    width: 120px;
+    height: 120px;
+    font-size: 3rem;
+}
+
+/* Default colors for teams */
+.team1-color {
+    background-color: #3498db;
+}
+
+.team2-color {
+    background-color: #e74c3c;
+}
+
+/* Player card styling */
+.player-card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border-left: 5px solid #3498db;
+}
+
+.player-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Player profile colors - will be added dynamically */

@@ -1,0 +1,348 @@
+/* Retro 8-bit Styling for the entire website */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+    --retro-bg-color: #a8e0f7;
+    --retro-primary: #8bc34a;
+    --retro-secondary: #ffd700;
+    --retro-accent: #ff5252;
+    --retro-dark: #000000;
+    --retro-light: #ffffff;
+    --retro-border-width: 4px;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Press Start 2P', cursive !important;
+    background-color: var(--retro-bg-color) !important;
+    color: var(--retro-dark) !important;
+    padding-top: 0 !important;
+    line-height: 1.5 !important;
+    image-rendering: pixelated;
+}
+
+/* Override Bootstrap and other framework styles */
+h1, h2, h3, h4, h5, h6, p, span, a, button, input, select, textarea, label, div {
+    font-family: 'Press Start 2P', cursive !important;
+    color: var(--retro-dark) !important;
+}
+
+.container, .container-fluid {
+    padding: 20px !important;
+}
+
+/* Navigation */
+.navbar {
+    background-color: var(--retro-light) !important;
+    border-bottom: var(--retro-border-width) solid var(--retro-dark) !important;
+    padding: 15px 0 !important;
+    box-shadow: none !important;
+    margin-bottom: 20px !important;
+}
+
+.navbar-brand, .nav-link {
+    color: var(--retro-dark) !important;
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+}
+
+.navbar-toggler {
+    border: var(--retro-border-width) solid var(--retro-dark) !important;
+    border-radius: 0 !important;
+}
+
+/* Buttons */
+.btn, button, .button, a.button {
+    background-color: var(--retro-primary) !important;
+    color: var(--retro-dark) !important;
+    border: var(--retro-border-width) solid var(--retro-dark) !important;
+    border-radius: 0 !important;
+    padding: 8px 16px !important;
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+    transition: transform 0.2s ease !important;
+    text-decoration: none !important;
+}
+
+.btn:hover, button:hover, .button:hover, a.button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 0 var(--retro-dark) !important;
+}
+
+.btn-primary, .btn-success {
+    background-color: var(--retro-primary) !important;
+}
+
+.btn-secondary {
+    background-color: var(--retro-secondary) !important;
+}
+
+.btn-danger {
+    background-color: var(--retro-accent) !important;
+}
+
+/* Cards and Containers */
+.card, .container-box {
+    background-color: var(--retro-light) !important;
+    border: var(--retro-border-width) solid var(--retro-dark) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin-bottom: 20px !important;
+}
+
+.card-header, .box-header {
+    background-color: var(--retro-light) !important;
+    border-bottom: var(--retro-border-width) solid var(--retro-dark) !important;
+    padding: 15px !important;
+    font-size: 16px !important;
+    text-transform: uppercase !important;
+}
+
+.card-header h1, .card-header h2, .card-header h3, 
+.card-header h4, .card-header h5, .card-header h6,
+.box-header h1, .box-header h2, .box-header h3, 
+.box-header h4, .box-header h5, .box-header h6 {
+    color: var(--retro-dark) !important;
+    margin: 0 !important;
+}
+
+.card-body, .box-body {
+    padding: 15px !important;
+}
+
+/* Tables */
+table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-bottom: 20px !important;
+    background-color: var(--retro-light) !important;
+}
+
+th {
+    background-color: var(--retro-light) !important;
+    color: var(--retro-dark) !important;
+    border-bottom: var(--retro-border-width) solid var(--retro-dark) !important;
+    padding: 10px !important;
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+}
+
+td {
+    padding: 10px !important;
+    border-bottom: 2px solid var(--retro-dark) !important;
+    font-size: 12px !important;
+    vertical-align: middle !important;
+    color: var(--retro-dark) !important;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2 !important;
+}
+
+/* Forms */
+input, select, textarea {
+    background-color: var(--retro-light) !important;
+    border: 2px solid var(--retro-dark) !important;
+    border-radius: 0 !important;
+    padding: 8px !important;
+    font-size: 12px !important;
+    width: 100% !important;
+    margin-bottom: 15px !important;
+    color: var(--retro-dark) !important;
+}
+
+label {
+    font-size: 12px !important;
+    margin-bottom: 5px !important;
+    display: block !important;
+    color: var(--retro-dark) !important;
+}
+
+/* Player Avatars */
+.player-avatar {
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--retro-light) !important;
+    font-weight: bold !important;
+    border: 2px solid var(--retro-dark) !important;
+    font-size: 14px !important;
+    margin-right: 10px !important;
+    border-radius: 0 !important;
+}
+
+/* Leaderboard Specific */
+.leaderboard-container {
+    background-color: var(--retro-light) !important;
+    border: var(--retro-border-width) solid var(--retro-dark) !important;
+    max-width: 800px !important;
+    margin: 20px auto !important;
+    padding: 0 !important;
+}
+
+.leaderboard-header {
+    border-bottom: var(--retro-border-width) solid var(--retro-dark) !important;
+    padding: 15px !important;
+}
+
+.leaderboard-title {
+    font-size: 24px !important;
+    color: var(--retro-dark) !important;
+    text-transform: uppercase !important;
+    margin: 0 !important;
+    text-align: center !important;
+}
+
+.add-game-button {
+    background-color: var(--retro-primary) !important;
+    display: inline-block !important;
+}
+
+.rules-button {
+    background-color: var(--retro-secondary) !important;
+}
+
+.rank-number, .streak-value, .ranking-value {
+    font-weight: bold !important;
+    color: var(--retro-dark) !important;
+}
+
+.ranking-up {
+    color: var(--retro-primary) !important;
+}
+
+.ranking-down {
+    color: var(--retro-accent) !important;
+}
+
+/* Breadcrumbs */
+.breadcrumb {
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin-bottom: 20px !important;
+}
+
+.breadcrumb-item {
+    font-size: 10px !important;
+}
+
+.breadcrumb-item a {
+    color: var(--retro-dark) !important;
+    text-decoration: none !important;
+}
+
+.breadcrumb-item.active {
+    color: var(--retro-primary) !important;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--retro-light) !important;
+    border-top: var(--retro-border-width) solid var(--retro-dark) !important;
+    padding: 20px 0 !important;
+    margin-top: 50px !important;
+    text-align: center !important;
+}
+
+.footer p {
+    color: var(--retro-dark) !important;
+    margin: 0 !important;
+}
+
+/* Animations */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+
+/* Match Cards */
+.match-card {
+    border-left: 5px solid var(--retro-primary) !important;
+}
+
+.score-display {
+    font-size: 24px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    padding: 10px !important;
+    background-color: var(--retro-light) !important;
+    color: var(--retro-dark) !important;
+    border: 2px solid var(--retro-dark) !important;
+}
+
+.vs-badge {
+    display: inline-block !important;
+    padding: 5px 10px !important;
+    background-color: var(--retro-secondary) !important;
+    color: var(--retro-dark) !important;
+    font-weight: bold !important;
+    border: 2px solid var(--retro-dark) !important;
+}
+
+/* Remove Bootstrap rounded corners and shadows */
+.rounded, .rounded-sm, .rounded-lg, .rounded-circle, .shadow, .shadow-sm, .shadow-lg {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Fix for dropdown menus */
+.dropdown-menu {
+    background-color: var(--retro-light) !important;
+    border: var(--retro-border-width) solid var(--retro-dark) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.dropdown-item {
+    font-size: 12px !important;
+    padding: 10px !important;
+    border-bottom: 1px solid var(--retro-dark) !important;
+    color: var(--retro-dark) !important;
+}
+
+.dropdown-item:hover {
+    background-color: #f2f2f2 !important;
+}
+
+/* Alert messages */
+.alert {
+    border: var(--retro-border-width) solid var(--retro-dark) !important;
+    border-radius: 0 !important;
+    padding: 15px !important;
+    margin-bottom: 20px !important;
+    font-size: 12px !important;
+}
+
+.alert-success {
+    background-color: var(--retro-primary) !important;
+    color: var(--retro-dark) !important;
+}
+
+.alert-danger {
+    background-color: var(--retro-accent) !important;
+    color: var(--retro-dark) !important;
+}
+
+.alert-warning {
+    background-color: var(--retro-secondary) !important;
+    color: var(--retro-dark) !important;
+}
+
+.alert-info {
+    background-color: var(--retro-bg-color) !important;
+    color: var(--retro-dark) !important;
+}
+
+/* Fix for text-muted class */
+.text-muted {
+    color: #555 !important;
+}

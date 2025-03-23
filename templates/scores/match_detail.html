@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Match Details</li>
+                </ol>
+            </nav>
+            <h1 class="display-5 animate__animated animate__fadeInDown">
+                <i class="fas fa-gamepad me-2"></i> Match Details
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card mb-4 animate__animated animate__fadeInUp">
+                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <h3 class="mb-0">Match #{{ match.id }}</h3>
+                    <span class="badge bg-primary">{{ match.match_type }}</span>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-5 text-center">
+                            <h4 class="mb-3">Team 1</h4>
+                            <div class="d-flex flex-column align-items-center mb-3 animate__animated animate__fadeIn">
+                                <div class="player-avatar mb-2" style="width: 80px; height: 80px; font-size: 2rem; background-color: {{ match.team1_player1.profile_color }}">
+                                    {{ match.team1_player1.nickname|default:match.team1_player1.user.username|slice:":1" }}
+                                </div>
+                                <a href="{% url 'player-detail' match.team1_player1.pk %}">
+                                    {{ match.team1_player1.nickname|default:match.team1_player1.user.username }}
+                                </a>
+                            </div>
+                            
+                            {% if match.team1_player2 %}
+                                <div class="d-flex flex-column align-items-center animate__animated animate__fadeIn animate__delay-1s">
+                                    <div class="player-avatar mb-2" style="width: 80px; height: 80px; font-size: 2rem; background-color: {{ match.team1_player2.profile_color }}">
+                                        {{ match.team1_player2.nickname|default:match.team1_player2.user.username|slice:":1" }}
+                                    </div>
+                                    <a href="{% url 'player-detail' match.team1_player2.pk %}">
+                                        {{ match.team1_player2.nickname|default:match.team1_player2.user.username }}
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-2 d-flex flex-column justify-content-center align-items-center">
+                            <div class="score-display mb-2 animate__animated animate__zoomIn">{{ match.team1_score }}</div>
+                            <div class="vs-badge animate__animated animate__pulse animate__infinite">VS</div>
+                            <div class="score-display mt-2 animate__animated animate__zoomIn">{{ match.team2_score }}</div>
+                        </div>
+                        
+                        <div class="col-md-5 text-center">
+                            <h4 class="mb-3">Team 2</h4>
+                            <div class="d-flex flex-column align-items-center mb-3 animate__animated animate__fadeIn">
+                                <div class="player-avatar mb-2" style="width: 80px; height: 80px; font-size: 2rem; background-color: {{ match.team2_player1.profile_color }}">
+                                    {{ match.team2_player1.nickname|default:match.team2_player1.user.username|slice:":1" }}
+                                </div>
+                                <a href="{% url 'player-detail' match.team2_player1.pk %}">
+                                    {{ match.team2_player1.nickname|default:match.team2_player1.user.username }}
+                                </a>
+                            </div>
+                            
+                            {% if match.team2_player2 %}
+                                <div class="d-flex flex-column align-items-center animate__animated animate__fadeIn animate__delay-1s">
+                                    <div class="player-avatar mb-2" style="width: 80px; height: 80px; font-size: 2rem; background-color: {{ match.team2_player2.profile_color }}">
+                                        {{ match.team2_player2.nickname|default:match.team2_player2.user.username|slice:":1" }}
+                                    </div>
+                                    <a href="{% url 'player-detail' match.team2_player2.pk %}">
+                                        {{ match.team2_player2.nickname|default:match.team2_player2.user.username }}
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="alert {% if match.team1_score > match.team2_score %}alert-success{% elif match.team1_score < match.team2_score %}alert-danger{% else %}alert-warning{% endif %} text-center animate__animated animate__bounceIn">
+                                <h4 class="alert-heading">
+                                    {% if match.team1_score > match.team2_score %}
+                                        Team 1 Wins!
+                                    {% elif match.team1_score < match.team2_score %}
+                                        Team 2 Wins!
+                                    {% else %}
+                                        It's a Draw!
+                                    {% endif %}
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <p><strong>Date Played:</strong> {{ match.date_played|date:"F j, Y, g:i a" }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Match Type:</strong> {{ match.get_match_type_display }}</p>
+                        </div>
+                    </div>
+                    
+                    {% if match.notes %}
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">Match Notes</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        {{ match.notes|linebreaks }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-12 d-flex justify-content-between">
+                            <a href="{% url 'home' %}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left me-2"></i> Back to Matches
+                            </a>
+                            
+                            {% if user.is_authenticated %}
+                                <div>
+                                    <a href="{% url 'match-update' match.pk %}" class="btn btn-primary me-2">
+                                        <i class="fas fa-edit me-1"></i> Edit
+                                    </a>
+                                    <a href="{% url 'match-delete' match.pk %}" class="btn btn-danger">
+                                        <i class="fas fa-trash me-1"></i> Delete
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

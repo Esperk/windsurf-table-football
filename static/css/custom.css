@@ -1,0 +1,220 @@
+/* Custom animations and styles for Table Football Tracker */
+
+/* Bounce animation for the football icon */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+.bounce {
+    animation: bounce 2s infinite;
+}
+
+/* Rotate animation for loading states */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.rotate {
+    animation: rotate 2s linear infinite;
+}
+
+/* Score counter animation */
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.count-up {
+    animation: countUp 1s ease-out;
+}
+
+/* Pulse animation for buttons */
+@keyframes customPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.custom-pulse {
+    animation: customPulse 2s infinite;
+}
+
+/* Shine effect for cards */
+@keyframes shine {
+    0% { background-position: -100px; }
+    40%, 100% { background-position: 140px; }
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    background-size: 50px 100%;
+    background-repeat: no-repeat;
+    background-position: -100px;
+    animation: shine 3s infinite;
+    pointer-events: none;
+}
+
+/* Enhanced player avatar styles */
+.player-avatar {
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.player-avatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced score display */
+.score-display {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.score-display::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.score-display:hover::before {
+    opacity: 1;
+}
+
+/* Team colors */
+.team1-color {
+    background-color: var(--primary-color);
+}
+
+.team2-color {
+    background-color: var(--accent-color);
+}
+
+/* Match result badges */
+.result-badge {
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.result-badge.win {
+    background-color: var(--secondary-color);
+}
+
+.result-badge.win:hover {
+    transform: rotate(5deg) scale(1.1);
+}
+
+.result-badge.loss {
+    background-color: var(--accent-color);
+}
+
+.result-badge.loss:hover {
+    transform: rotate(-5deg) scale(1.1);
+}
+
+.result-badge.draw {
+    background-color: var(--dark-color);
+}
+
+.result-badge.draw:hover {
+    transform: scale(1.1);
+}
+
+/* Leaderboard trophy animations */
+.trophy-gold {
+    color: gold;
+    animation: bounce 2s infinite;
+}
+
+.trophy-silver {
+    color: silver;
+    animation: bounce 2s infinite;
+    animation-delay: 0.3s;
+}
+
+.trophy-bronze {
+    color: #cd7f32;
+    animation: bounce 2s infinite;
+    animation-delay: 0.6s;
+}
+
+/* Form field animations */
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+/* Button hover effects */
+.btn {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    transition: all 0.5s ease;
+}
+
+.btn:hover::after {
+    left: 100%;
+}
+
+/* Page transitions */
+.page-transition {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .player-avatar {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1rem !important;
+    }
+    
+    .score-display {
+        font-size: 1.5rem !important;
+    }
+}

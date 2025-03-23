@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'player-list' %}">Players</a></li>
+                    <li class="breadcrumb-item active">{{ player.nickname|default:player.user.username }}</li>
+                </ol>
+            </nav>
+            <h1 class="display-5 animate__animated animate__fadeInDown">
+                <i class="fas fa-user me-2"></i> Player Profile
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card mb-4 animate__animated animate__fadeInLeft">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="mb-0">Profile</h3>
+                </div>
+                <div class="card-body text-center">
+                    <div class="player-avatar mx-auto mb-3 player-avatar-extra-large team1-color">
+                        {{ player.nickname|default:player.user.username|slice:":1" }}
+                    </div>
+                    <h3 class="mb-1">{{ player.nickname|default:player.user.username }}</h3>
+                    <p class="text-muted">{{ player.user.email }}</p>
+                    
+                    {% if user.is_authenticated and user.player == player %}
+                        <a href="{% url 'profile-update' %}" class="btn btn-primary mt-3">
+                            <i class="fas fa-edit me-1"></i> Edit Profile
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            
+            {% if player.stats %}
+                <div class="card mb-4 animate__animated animate__fadeInLeft animate__delay-1s">
+                    <div class="card-header bg-dark text-white">
+                        <h3 class="mb-0">Statistics</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-6 mb-3">
+                                <h2 class="mb-1">{{ player.stats.matches_played }}</h2>
+                                <p class="text-muted mb-0">Matches Played</p>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <h2 class="mb-1">{{ player.stats.win_percentage }}%</h2>
+                                <p class="text-muted mb-0">Win Rate</p>
+                            </div>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <h3 class="text-success mb-1">{{ player.stats.matches_won }}</h3>
+                                <p class="text-muted mb-0">Wins</p>
+                            </div>
+                            <div class="col-4">
+                                <h3 class="text-danger mb-1">{{ player.stats.matches_lost }}</h3>
+                                <p class="text-muted mb-0">Losses</p>
+                            </div>
+                            <div class="col-4">
+                                <h3 class="text-warning mb-1">{{ player.stats.matches_drawn }}</h3>
+                                <p class="text-muted mb-0">Draws</p>
+                            </div>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="row text-center">
+                            <div class="col-6">
+                                <h3 class="text-primary mb-1">{{ player.stats.goals_scored }}</h3>
+                                <p class="text-muted mb-0">Goals Scored</p>
+                            </div>
+                            <div class="col-6">
+                                <h3 class="text-secondary mb-1">{{ player.stats.goals_conceded }}</h3>
+                                <p class="text-muted mb-0">Goals Conceded</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="col-lg-8">
+            <div class="card animate__animated animate__fadeInRight">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="mb-0">Match History</h3>
+                </div>
+                <div class="card-body">
+                    {% if matches %}
+                        <div class="list-group">
+                            {% for match in matches %}
+                                <a href="{% url 'match-detail' match.pk %}" class="list-group-item list-group-item-action match-card mb-2 animate__animated animate__fadeIn">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <div>
+                                            <h5 class="mb-1">
+                                                {% if match.team1_player1 %}
+                                                    <span class="player-avatar team1-color">
+                                                        {{ match.team1_player1.nickname|default:match.team1_player1.user.username|slice:":1" }}
+                                                    </span>
+                                                    {{ match.team1_player1.nickname|default:match.team1_player1.user.username }}
+                                                {% endif %}
+                                                
+                                                {% if match.team1_player2 %}
+                                                    & 
+                                                    <span class="player-avatar team1-color">
+                                                        {{ match.team1_player2.nickname|default:match.team1_player2.user.username|slice:":1" }}
+                                                    </span>
+                                                    {{ match.team1_player2.nickname|default:match.team1_player2.user.username }}
+                                                {% endif %}
+                                                
+                                                <span class="vs-badge mx-2">VS</span>
+                                                
+                                                {% if match.team2_player1 %}
+                                                    <span class="player-avatar team2-color">
+                                                        {{ match.team2_player1.nickname|default:match.team2_player1.user.username|slice:":1" }}
+                                                    </span>
+                                                    {{ match.team2_player1.nickname|default:match.team2_player1.user.username }}
+                                                {% endif %}
+                                                
+                                                {% if match.team2_player2 %}
+                                                    & 
+                                                    <span class="player-avatar team2-color">
+                                                        {{ match.team2_player2.nickname|default:match.team2_player2.user.username|slice:":1" }}
+                                                    </span>
+                                                    {{ match.team2_player2.nickname|default:match.team2_player2.user.username }}
+                                                {% endif %}
+                                            </h5>
+                                        </div>
+                                        <div>
+                                            <span class="badge bg-primary">{{ match.match_type }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center my-2">
+                                        <div class="score-display me-2">{{ match.team1_score }}</div>
+                                        <div class="score-display">{{ match.team2_score }}</div>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">{{ match.date_played|date:"F j, Y, g:i a" }}</small>
+                                        
+                                        <span class="badge {% if player in match.team1_player1|add:match.team1_player2 and match.team1_score > match.team2_score %}bg-success{% elif player in match.team2_player1|add:match.team2_player2 and match.team2_score > match.team1_score %}bg-success{% elif match.team1_score == match.team2_score %}bg-warning{% else %}bg-danger{% endif %}">
+                                            {% if player in match.team1_player1|add:match.team1_player2 and match.team1_score > match.team2_score %}
+                                                Win
+                                            {% elif player in match.team2_player1|add:match.team2_player2 and match.team2_score > match.team1_score %}
+                                                Win
+                                            {% elif match.team1_score == match.team2_score %}
+                                                Draw
+                                            {% else %}
+                                                Loss
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-5">
+                            <i class="fas fa-futbol fa-4x mb-3 text-muted"></i>
+                            <h4>No matches played yet</h4>
+                            <p>This player hasn't participated in any matches</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

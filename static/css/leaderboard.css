@@ -1,0 +1,190 @@
+/* Colorful Leaderboard Styling */
+body {
+    background-color: #a8e0f7;
+}
+
+.leaderboard-container {
+    background-color: white;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 2px solid #333;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.leaderboard-header {
+    background-color: white;
+    border-radius: 0;
+    padding: 15px;
+    margin-bottom: 0;
+    border-bottom: 2px solid #333;
+}
+
+.leaderboard-title {
+    font-family: 'Press Start 2P', monospace, sans-serif;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.add-game-button {
+    background-color: #8bc34a;
+    color: black;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 0;
+    border: 2px solid #333;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin: 10px auto;
+    text-decoration: none;
+    font-family: 'Press Start 2P', monospace, sans-serif;
+    font-size: 0.8rem;
+}
+
+.add-game-button:hover {
+    background-color: #689f38;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Table styling */
+.leaderboard-table {
+    background-color: white;
+    border-radius: 0;
+    overflow: hidden;
+    border: none;
+    margin-bottom: 0;
+}
+
+.leaderboard-table thead {
+    background-color: white;
+    color: black;
+    border-bottom: 1px solid #ddd;
+}
+
+.leaderboard-table th {
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 12px;
+    font-size: 0.9rem;
+    font-family: 'Press Start 2P', monospace, sans-serif;
+    border-bottom: none;
+}
+
+.leaderboard-table tbody tr {
+    border-bottom: none;
+    transition: all 0.2s ease;
+}
+
+.leaderboard-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.leaderboard-table td {
+    padding: 8px 12px;
+    vertical-align: middle;
+    border-top: none;
+}
+
+/* Player styling */
+.player-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    border: 2px solid #333;
+    overflow: hidden;
+}
+
+.player-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Rank styling */
+.rank-number {
+    font-weight: bold;
+    font-size: 1.2rem;
+    font-family: 'Press Start 2P', monospace, sans-serif;
+}
+
+/* Streak styling */
+.streak-value {
+    font-family: 'Press Start 2P', monospace, sans-serif;
+    font-size: 1rem;
+}
+
+/* Ranking styling */
+.ranking-value {
+    font-family: 'Press Start 2P', monospace, sans-serif;
+    font-size: 1rem;
+}
+
+.ranking-change {
+    font-family: 'Press Start 2P', monospace, sans-serif;
+    font-weight: bold;
+    margin-left: 5px;
+    font-size: 0.8rem;
+}
+
+.ranking-up {
+    color: #28a745;
+}
+
+.ranking-down {
+    color: #dc3545;
+}
+
+/* Navigation bar */
+.nav-bar {
+    background-color: white;
+    border-bottom: 2px solid #333;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.nav-link {
+    font-family: 'Press Start 2P', monospace, sans-serif;
+    color: #333;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.rules-button {
+    background-color: #ffd700;
+    color: black;
+    font-weight: bold;
+    padding: 5px 15px;
+    border: 2px solid #333;
+    text-transform: uppercase;
+    font-family: 'Press Start 2P', monospace, sans-serif;
+    font-size: 0.7rem;
+    text-decoration: none;
+}
+
+.login-link {
+    color: #8bc34a;
+    font-family: 'Press Start 2P', monospace, sans-serif;
+    font-size: 0.7rem;
+    text-decoration: none;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
